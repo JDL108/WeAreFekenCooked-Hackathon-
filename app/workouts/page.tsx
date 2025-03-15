@@ -1,8 +1,11 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExternalLink } from "lucide-react";
 
 export default function WorkoutsPage() {
   return (
@@ -11,10 +14,6 @@ export default function WorkoutsPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Workout Library</h1>
           <p className="text-muted-foreground">Browse our collection of exercises and workout routines.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button>Filter</Button>
-          <Button variant="outline">Sort</Button>
         </div>
       </div>
 
@@ -32,42 +31,48 @@ export default function WorkoutsPage() {
               description="Master different push-up techniques to target various muscle groups."
               category="Strength"
               difficulty="Beginner to Advanced"
-              image="/placeholder.svg?height=200&width=300"
+              image="pushups.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=hwnsLAFDuHA"
             />
             <WorkoutCard
               title="HIIT Cardio Blast"
               description="A high-intensity interval training workout to boost your cardio fitness."
               category="Cardio"
               difficulty="Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="cardioblast.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=QTDbxTT8Pm8"
             />
             <WorkoutCard
               title="Full Body Stretch Routine"
               description="Improve flexibility and reduce muscle tension with this comprehensive routine."
               category="Flexibility"
               difficulty="All Levels"
-              image="/placeholder.svg?height=200&width=300"
+              image="fullBody.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=y87vSUoIMGU"
             />
             <WorkoutCard
               title="Dumbbell Strength Circuit"
               description="Build strength with this full-body dumbbell workout."
               category="Strength"
               difficulty="Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="dumbbellCircuit.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=N05p3wToB_o"
             />
             <WorkoutCard
               title="30-Minute Running Guide"
               description="Structured running workout for beginners and intermediate runners."
               category="Cardio"
               difficulty="Beginner to Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="runningGuide.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=HgDl2gsOPrI"
             />
             <WorkoutCard
               title="Yoga for Athletes"
               description="Yoga poses specifically designed to complement athletic training."
               category="Flexibility"
               difficulty="All Levels"
-              image="/placeholder.svg?height=200&width=300"
+              image="lebronYoga.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=xZC52_qO_r4"
             />
           </div>
         </TabsContent>
@@ -78,14 +83,16 @@ export default function WorkoutsPage() {
               description="Master different push-up techniques to target various muscle groups."
               category="Strength"
               difficulty="Beginner to Advanced"
-              image="/placeholder.svg?height=200&width=300"
+              image="pushups.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=hwnsLAFDuHA"
             />
             <WorkoutCard
               title="Dumbbell Strength Circuit"
               description="Build strength with this full-body dumbbell workout."
               category="Strength"
               difficulty="Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="dumbbellCircuit.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=N05p3wToB_o"
             />
           </div>
         </TabsContent>
@@ -96,14 +103,16 @@ export default function WorkoutsPage() {
               description="A high-intensity interval training workout to boost your cardio fitness."
               category="Cardio"
               difficulty="Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="cardioblast.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=QTDbxTT8Pm8"
             />
             <WorkoutCard
               title="30-Minute Running Guide"
               description="Structured running workout for beginners and intermediate runners."
               category="Cardio"
               difficulty="Beginner to Intermediate"
-              image="/placeholder.svg?height=200&width=300"
+              image="runningGuide.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=HgDl2gsOPrI"
             />
           </div>
         </TabsContent>
@@ -114,31 +123,39 @@ export default function WorkoutsPage() {
               description="Improve flexibility and reduce muscle tension with this comprehensive routine."
               category="Flexibility"
               difficulty="All Levels"
-              image="/placeholder.svg?height=200&width=300"
+              image="fullBody.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=y87vSUoIMGU"
             />
             <WorkoutCard
               title="Yoga for Athletes"
               description="Yoga poses specifically designed to complement athletic training."
               category="Flexibility"
               difficulty="All Levels"
-              image="/placeholder.svg?height=200&width=300"
+              image="lebronYoga.png?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=xZC52_qO_r4"
             />
           </div>
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 interface WorkoutCardProps {
-  title: string
-  description: string
-  category: string
-  difficulty: string
-  image: string
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  image: string;
+  videoUrl?: string;
 }
 
-function WorkoutCard({ title, description, category, difficulty, image }: WorkoutCardProps) {
+function WorkoutCard({ title, description, category, difficulty, image, videoUrl }: WorkoutCardProps) {
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Do nothing
+  };
+
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -154,12 +171,19 @@ function WorkoutCard({ title, description, category, difficulty, image }: Workou
       <CardContent>
         <p>{description}</p>
       </CardContent>
-      <CardFooter>
-        <Button asChild className="w-full">
-          <Link href={`/workouts/${title.toLowerCase().replace(/\s+/g, "-")}`}>View Details</Link>
+      <CardFooter className="flex flex-col space-y-2">
+        <Button className="w-full" onClick={handleButtonClick}>
+          View Details
         </Button>
+        {videoUrl && (
+          <Button variant="outline" asChild className="w-full">
+            <Link href={videoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <ExternalLink size={16} />
+              Watch Video Tutorial
+            </Link>
+          </Button>
+        )}
       </CardFooter>
     </Card>
-  )
+  );
 }
-

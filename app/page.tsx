@@ -33,7 +33,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/FitTrack.png?height=400&width=400"
                 alt="Fitness"
                 width={400}
                 height={400}
@@ -128,14 +128,14 @@ export default function Home() {
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/placeholder.svg?height=100&width=100"
+                src="/RICHARD_Z.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
-                <h3 className="text-xl font-bold">Sarah M.</h3>
+                <h3 className="text-xl font-bold">Richard Z.</h3>
                 <p className="text-sm text-muted-foreground">
                   "I've lost 30 pounds in 6 months using the calorie tracker and workout library. This platform changed
                   my life!"
@@ -144,14 +144,14 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/placeholder.svg?height=100&width=100"
+                src="/Jason_L.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
-                <h3 className="text-xl font-bold">John D.</h3>
+                <h3 className="text-xl font-bold">Jason L.</h3>
                 <p className="text-sm text-muted-foreground">
                   "The activity tracker helps me stay accountable. I've improved my running time by 15% in just 3
                   months!"
@@ -160,16 +160,16 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/placeholder.svg?height=100&width=100"
+                src="/White_Girl.jpg?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
-                <h3 className="text-xl font-bold">Lisa K.</h3>
+                <h3 className="text-xl font-bold">Emily W.</h3>
                 <p className="text-sm text-muted-foreground">
-                  "The nutrition articles and calorie calculator helped me understand my body's needs. I feel more
+                  "The nutrition articles and calorie tracker helped me understand my body's needs. I feel more
                   energetic than ever!"
                 </p>
               </div>
@@ -180,4 +180,3 @@ export default function Home() {
     </div>
   )
 }
-
