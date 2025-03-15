@@ -411,101 +411,124 @@ interface ActivityTrackerProps {
 
 function ActivityTracker({ date }: ActivityTrackerProps) {
   const [activities, setActivities] = useState<
-    Array<{
-      id: string
-      type: string
-      duration: number
-      distance?: number
-      calories: number
-      notes?: string
-    }>
-  >([
-    {
-      id: "1",
-      type: "running",
-      duration: 30,
-      distance: 5,
-      calories: 300,
-      notes: "Morning run in the park",
-    },
-  ])
-
-  const [newActivity, setNewActivity] = useState({
+  Array<{
+    id: string;
+    type: string;
+    duration: number;
+    distance?: number;
+    calories: number;
+    notes?: string;
+  }>
+>([
+  {
+    id: "1",
     type: "running",
-    duration: "",
-    distance: "",
-    calories: "",
-    notes: "",
-  })
+    duration: 30,
+    distance: 5,
+    calories: 300,
+    notes: "Morning run in the park",
+  },
+]);
 
-  const [isAddingActivity, setIsAddingActivity] = useState(false)
-  const [intelligentInput, setIntelligentInput] = useState("")
-  const [isProcessing, setIsProcessing] = useState(false)
+const [newActivity, setNewActivity] = useState({
+  type: "running",
+  duration: "",
+  distance: "",
+  calories: "",
+  notes: "",
+});
 
-  const handleAddActivity = () => {
-    if (newActivity.type && newActivity.duration) {
-      setActivities([
+const [isAddingActivity, setIsAddingActivity] = useState(false);
+const [intelligentInput, setIntelligentInput] = useState("");
+const [isProcessing, setIsProcessing] = useState(false);
+
+// Fetch activities data from localStorage
+useEffect(() => {
+  const storedActivities = localStorage.getItem("activities");
+  if (storedActivities) {
+    setActivities(JSON.parse(storedActivities)); // Parse and set activities if they exist in localStorage
+  }
+}, []);
+
+const handleAddActivity = () => {
+  if (newActivity.type && newActivity.duration) {
+    const updatedActivities = [
+      ...activities,
+      {
+        id: Date.now().toString(),
+        type: newActivity.type,
+        duration: Number.parseInt(newActivity.duration),
+        distance: newActivity.distance ? Number.parseFloat(newActivity.distance) : undefined,
+        calories: Number.parseInt(newActivity.calories) || 0,
+        notes: newActivity.notes || undefined,
+      },
+    ];
+
+    setActivities(updatedActivities);
+
+    // Save the updated activities to localStorage
+    localStorage.setItem("activities", JSON.stringify(updatedActivities));
+
+    setNewActivity({
+      type: "running",
+      duration: "",
+      distance: "",
+      calories: "",
+      notes: "",
+    });
+
+    setIsAddingActivity(false);
+  }
+};
+
+const handleDeleteActivity = (id: string) => {
+  const updatedActivities = activities.filter((activity) => activity.id !== id);
+  setActivities(updatedActivities);
+
+  // Update localStorage after deleting an activity
+  localStorage.setItem("activities", JSON.stringify(updatedActivities));
+};
+
+const processIntelligentInput = async () => {
+  if (!intelligentInput.trim()) return;
+
+  setIsProcessing(true);
+  try {
+    const response = await analyzeActivity(intelligentInput);
+
+    // Add the analyzed activity
+    if (response) {
+      const updatedActivities = [
         ...activities,
         {
           id: Date.now().toString(),
-          type: newActivity.type,
-          duration: Number.parseInt(newActivity.duration),
-          distance: newActivity.distance ? Number.parseFloat(newActivity.distance) : undefined,
-          calories: Number.parseInt(newActivity.calories) || 0,
-          notes: newActivity.notes || undefined,
+          type: response.type,
+          duration: response.duration,
+          distance: response.distance,
+          calories: response.calories,
+          notes: intelligentInput, // Use the original input as notes
         },
-      ])
+      ];
 
-      setNewActivity({
-        type: "running",
-        duration: "",
-        distance: "",
-        calories: "",
-        notes: "",
-      })
+      setActivities(updatedActivities);
 
-      setIsAddingActivity(false)
+      // Save the updated activities to localStorage
+      localStorage.setItem("activities", JSON.stringify(updatedActivities));
+
+      // Clear the input
+      setIntelligentInput("");
     }
+  } catch (error) {
+    console.error("Error processing activity input:", error);
+    // You could add error handling UI here
+  } finally {
+    setIsProcessing(false);
   }
+};
 
-  const handleDeleteActivity = (id: string) => {
-    setActivities(activities.filter((activity) => activity.id !== id))
-  }
+const totalDuration = activities.reduce((sum, activity) => sum + activity.duration, 0);
+const totalCaloriesBurned = activities.reduce((sum, activity) => sum + activity.calories, 0);
 
-  const processIntelligentInput = async () => {
-    if (!intelligentInput.trim()) return
-
-    setIsProcessing(true)
-    try {
-      const response = await analyzeActivity(intelligentInput)
-
-      // Add the analyzed activity
-      if (response) {
-        setActivities([
-          ...activities,
-          {
-            id: Date.now().toString(),
-            type: response.type,
-            duration: response.duration,
-            distance: response.distance,
-            calories: response.calories,
-            notes: intelligentInput, // Use the original input as notes
-          },
-        ])
-
-        // Clear the input
-        setIntelligentInput("")
-      }
-    } catch (error) {
-      console.error("Error processing activity input:", error)
-      // You could add error handling UI here
-    } finally {
-      setIsProcessing(false)
-    }
-  }
-
-  const totalDuration = activities.reduce((sum, activity) => sum + activity.duration, 0)
-  const totalCaloriesBurned = activities.reduce((sum, activity) => sum + activity.calories, 0)
 
   return (
     <div className="space-y-6">
