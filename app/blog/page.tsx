@@ -135,15 +135,11 @@ function FeaturedArticle({ title, description, date, author, category, image, ur
             <div className="text-sm">By {author}</div>
           </div>
           <div className="mt-6">
-            {url ? (
-              <Button asChild>
-                <Link href={url} target="_blank" rel="noopener noreferrer">
-                  Read Full Article
-                </Link>
-              </Button>
-            ) : (
-              <Button disabled>Coming Soon</Button>
-            )}
+            <Button asChild>
+              <Link href={url} target="_blank" rel="noopener noreferrer">
+                Read Full Article
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -177,15 +173,11 @@ function BlogCard({ title, description, date, author, category, image, url }: Ar
         <p className="line-clamp-3">{description}</p>
       </CardContent>
       <CardFooter>
-        {url ? (
-          <Button asChild variant="ghost" className="w-full">
-            <Link href={url} target="_blank" rel="noopener noreferrer">
-              Read More
-            </Link>
-          </Button>
-        ) : (
-          <Button disabled variant="ghost" className="w-full">Coming Soon</Button>
-        )}
+        <Button asChild variant="ghost" className="w-full">
+          <Link href={url} target="_blank" rel="noopener noreferrer">
+            Read More
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   );
