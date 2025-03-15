@@ -73,3 +73,34 @@ export function userRegister(
 
   return { token: encodedToken };
 }
+
+/**
+ * @param {String} email
+ * @param {String} password
+ */
+export function userLogin(
+  email: string,
+  password: string
+) {
+  const data = getData() as Data;
+  const user = data.users.find(u => u.email === email);
+  if (user === undefined) {
+    throw new Error('Password or email address does not exist or is incorrect');
+  }
+
+  if (user.password !== hashPassword(password)) {
+    user.numFailedPasswordsSinceLastLogin++;
+    saveData(data);
+    throw new Error('Password or email address does not exist or is incorrect');
+  }
+
+  user.numSuccessfulLogins++;
+  user.numFailedPasswordsSinceLastLogin = 0;
+  user.totalSessionNum++;
+  const newSessionId = generateSessionId();
+  user.activeSessionIds.push(newSessionId);
+  const encodedToken = generateToken(user.userId, newSessionId);
+  saveData(data);
+
+  return { token: encodedToken };
+}
