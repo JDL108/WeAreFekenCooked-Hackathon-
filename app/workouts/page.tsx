@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ExternalLink } from "lucide-react"
 
 export default function WorkoutsPage() {
   return (
@@ -11,10 +12,6 @@ export default function WorkoutsPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Workout Library</h1>
           <p className="text-muted-foreground">Browse our collection of exercises and workout routines.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button>Filter</Button>
-          <Button variant="outline">Sort</Button>
         </div>
       </div>
 
@@ -33,6 +30,7 @@ export default function WorkoutsPage() {
               category="Strength"
               difficulty="Beginner to Advanced"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=hwnsLAFDuHA"
             />
             <WorkoutCard
               title="HIIT Cardio Blast"
@@ -40,6 +38,7 @@ export default function WorkoutsPage() {
               category="Cardio"
               difficulty="Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=QTDbxTT8Pm8"
             />
             <WorkoutCard
               title="Full Body Stretch Routine"
@@ -47,6 +46,7 @@ export default function WorkoutsPage() {
               category="Flexibility"
               difficulty="All Levels"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=y87vSUoIMGU"
             />
             <WorkoutCard
               title="Dumbbell Strength Circuit"
@@ -54,6 +54,7 @@ export default function WorkoutsPage() {
               category="Strength"
               difficulty="Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=N05p3wToB_o"
             />
             <WorkoutCard
               title="30-Minute Running Guide"
@@ -61,6 +62,7 @@ export default function WorkoutsPage() {
               category="Cardio"
               difficulty="Beginner to Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=HgDl2gsOPrI"
             />
             <WorkoutCard
               title="Yoga for Athletes"
@@ -68,6 +70,7 @@ export default function WorkoutsPage() {
               category="Flexibility"
               difficulty="All Levels"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=xZC52_qO_r4"
             />
           </div>
         </TabsContent>
@@ -79,6 +82,7 @@ export default function WorkoutsPage() {
               category="Strength"
               difficulty="Beginner to Advanced"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=hwnsLAFDuHA"
             />
             <WorkoutCard
               title="Dumbbell Strength Circuit"
@@ -86,6 +90,7 @@ export default function WorkoutsPage() {
               category="Strength"
               difficulty="Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=N05p3wToB_o"
             />
           </div>
         </TabsContent>
@@ -97,6 +102,7 @@ export default function WorkoutsPage() {
               category="Cardio"
               difficulty="Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=QTDbxTT8Pm8"
             />
             <WorkoutCard
               title="30-Minute Running Guide"
@@ -104,6 +110,7 @@ export default function WorkoutsPage() {
               category="Cardio"
               difficulty="Beginner to Intermediate"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=HgDl2gsOPrI"
             />
           </div>
         </TabsContent>
@@ -115,6 +122,7 @@ export default function WorkoutsPage() {
               category="Flexibility"
               difficulty="All Levels"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=y87vSUoIMGU"
             />
             <WorkoutCard
               title="Yoga for Athletes"
@@ -122,6 +130,7 @@ export default function WorkoutsPage() {
               category="Flexibility"
               difficulty="All Levels"
               image="/placeholder.svg?height=200&width=300"
+              videoUrl="https://www.youtube.com/watch?v=xZC52_qO_r4"
             />
           </div>
         </TabsContent>
@@ -136,9 +145,10 @@ interface WorkoutCardProps {
   category: string
   difficulty: string
   image: string
+  videoUrl?: string
 }
 
-function WorkoutCard({ title, description, category, difficulty, image }: WorkoutCardProps) {
+function WorkoutCard({ title, description, category, difficulty, image, videoUrl }: WorkoutCardProps) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -154,12 +164,22 @@ function WorkoutCard({ title, description, category, difficulty, image }: Workou
       <CardContent>
         <p>{description}</p>
       </CardContent>
-      <CardFooter>
-        <Button asChild className="w-full">
-          <Link href={`/workouts/${title.toLowerCase().replace(/\s+/g, "-")}`}>View Details</Link>
+      <CardFooter className="flex flex-col space-y-2">
+        <Button 
+          className="w-full"
+          onClick={(e) => e.preventDefault()}
+        >
+          View Details
         </Button>
+        {videoUrl && (
+          <Button variant="outline" asChild className="w-full">
+            <Link href={videoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+              <ExternalLink size={16} />
+              Watch Video Tutorial
+            </Link>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   )
 }
-
