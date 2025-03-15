@@ -1,4 +1,4 @@
-import { getData, Data, saveData } from './dataStore';
+import { getData, Data, User, saveData } from './dataStore';
 import {
   findUserWithEmail,
   checkNameIsValidInput,
@@ -7,7 +7,8 @@ import {
 } from './helperFunctions';
 import {
   generateToken,
-  generateSessionId
+  generateSessionId,
+  decodeToken,
 } from './token';
 import {
   isEmail
@@ -103,4 +104,19 @@ export function userLogin(
   saveData(data);
 
   return { token: encodedToken };
+}
+
+/**
+ * @param {String} token
+ */
+export function userLogout(
+  token: string
+) {
+  const data = getData() as Data;
+  const decodedToken = decodeToken(token);
+  const user = data.users.find(u => u.userId === decodedToken.userId) as User;
+  user.activeSessionIds = user.activeSessionIds.filter(id => id !== decodedToken.sessionId);
+
+  saveData(data);
+  return {};
 }
