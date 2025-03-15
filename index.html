@@ -1,18 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- weAreFekenCooked Hackathon, by:
- Jia Di Li, Richard Zhang, Daniel Liang, Jason Lukman, Aaron Liu, Kanay Gupta
- -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
+    <header>
+        <h1>Fitness Tracker</h1>
+        <div class="date-selector">
+            <label for="date-picker">Date:</label>
+            <input type="date" id="date-picker" value="2025-03-15">
+        </div>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="calories">Calorie Tracker</button>
+            <button class="tab-button" data-tab="activity">Activity Tracker</button>
+        </div>
+
+        <div class="tab-content active" id="calories-tab">
+            <section class="summary-card">
+                <h2>Daily Nutrition Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <h3>Calories</h3>
+                        <p class="summary-value"><span id="total-calories">800</span> / <span id="calorie-target">2000</span></p>
+                        <div class="progress-bar">
+                            <div class="progress" id="calories-progress" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Protein</h3>
+                        <p class="summary-value"><span id="total-protein">45</span>g / <span id="protein-target">150</span>g</p>
+                        <div class="progress-bar">
+                            <div class="progress protein-progress" id="protein-progress" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Carbs</h3>
+                        <p class="summary-value"><span id="total-carbs">80</span>g / <span id="carbs-target">200</span>g</p>
+                        <div class="progress-bar">
+                            <div class="progress carbs-progress" id="carbs-progress" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Fats</h3>
+                        <p class="summary-value"><span id="total-fat">32</span>g / <span id="fat-target">65</span>g</p>
+                        <div class="progress-bar">
+                            <div class="progress fat-progress" id="fat-progress" style="width: 49%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Intelligent Tracking</h2>
+                <p class="description">Simply describe what you ate in natural language and our AI will analyze the nutritional content.</p>
+                <div class="input-group">
+                    <label for="food-input">What did you eat?</label>
+                    <div class="input-with-button">
+                        <input type="text" id="food-input" placeholder="E.g., I ate around 100g of salmon today with 2 eggs and an avocado">
+                        <button id="analyze-food-button">Track</button>
+                    </div>
+                    <p class="hint">Be as specific as possible with portions and ingredients for more accurate results.</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <h2>Food Log</h2>
+                    <button id="add-food-button">+ Add Food Manually</button>
+                </div>
+                
+                <div id="add-food-form" class="form-container hidden">
+                    <h3>Add Food Item</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="food-name">Food Name</label>
+                            <input type="text" id="food-name" placeholder="e.g., Chicken Salad">
+                        </div>
+                        <div class="form-group">
+                            <label for="meal-type">Meal Type</label>
+                            <select id="meal-type">
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="food-calories">Calories</label>
+                            <input type="number" id="food-calories" placeholder="e.g., 350">
+                        </div>
+                        <div class="form-group">
+                            <label for="food-protein">Protein (g)</label>
+                            <input type="number" id="food-protein" placeholder="e.g., 20">
+                        </div>
+                        <div class="form-group">
+                            <label for="food-carbs">Carbs (g)</label>
+                            <input type="number" id="food-carbs" placeholder="e.g., 30">
+                        </div>
+                        <div class="form-group">
+                            <label for="food-fat">Fat (g)</label>
+                            <input type="number" id="food-fat" placeholder="e.g., 10">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="cancel-food-button" class="button-secondary">Cancel</button>
+                        <button id="save-food-button">Add Food</button>
+                    </div>
+                </div>
+
+                <div id="food-log">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="col-food">Food</th>
+                                <th class="col-calories">Calories</th>
+                                <th class="col-protein">Protein</th>
+                                <th class="col-carbs">Carbs</th>
+                                <th class="col-fat">Fat</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="food-log-body">
+                            <tr>
+                                <td class="col-food">
+                                    <div class="food-name">Oatmeal with Berries</div>
+                                    <div class="meal-type">Breakfast</div>
+                                </td>
+                                <td class="col-calories">350</td>
+                                <td class="col-protein">10g</td>
+                                <td class="col-carbs">60g</td>
+                                <td class="col-fat">7g</td>
+                                <td class="col-actions">
+                                    <button class="icon-button delete-food" data-id="1">✕</button>
+                                    <button class="icon-button edit-food" data-id="1">✎</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="col-food">
+                                    <div class="food-name">Chicken Salad</div>
+                                    <div class="meal-type">Lunch</div>
+                                </td>
+                                <td class="col-calories">450</td>
+                                <td class="col-protein">35g</td>
+                                <td class="col-carbs">20g</td>
+                                <td class="col-fat">25g</td>
+                                <td class="col-actions">
+                                    <button class="icon-button delete-food" data-id="2">✕</button>
+                                    <button class="icon-button edit-food" data-id="2">✎</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div class="tab-content" id="activity-tab">
+            <section class="summary-card">
+                <h2>Activity Summary</h2>
+                <div class="summary-grid activity-summary">
+                    <div class="summary-item">
+                        <h3>Activities</h3>
+                        <p class="summary-value" id="activity-count">1</p>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Total Duration</h3>
+                        <p class="summary-value"><span id="total-duration">30</span> min</p>
+                    </div>
+                    <div class="summary-item">
+                        <h3>Calories Burned</h3>
+                        <p class="summary-value" id="calories-burned">300</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Intelligent Tracking</h2>
+                <p class="description">Simply describe your workout in natural language and our AI will analyze the activity details.</p>
+                <div class="input-group">
+                    <label for="activity-input">What activity did you do?</label>
+                    <div class="input-with-button">
+                        <input type="text" id="activity-input" placeholder="E.g., I went for a 5km run this morning that took about 30 minutes">
+                        <button id="analyze-activity-button">Track</button>
+                    </div>
+                    <p class="hint">Include details like activity type, duration, distance, and intensity for more accurate results.</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <h2>Activity Log</h2>
+                    <button id="add-activity-button">+ Add Activity Manually</button>
+                </div>
+                
+                <div id="add-activity-form" class="form-container hidden">
+                    <h3>Add Activity</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="activity-type">Activity Type</label>
+                            <select id="activity-type">
+                                <option value="running">Running</option>
+                                <option value="walking">Walking</option>
+                                <option value="cycling">Cycling</option>
+                                <option value="swimming">Swimming</option>
+                                <option value="weight-training">Weight Training</option>
+                                <option value="yoga">Yoga</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-duration">Duration (minutes)</label>
+                            <input type="number" id="activity-duration" placeholder="e.g., 30">
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-distance">Distance (km)</label>
+                            <input type="number" id="activity-distance" placeholder="e.g., 5">
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-calories">Calories Burned</label>
+                            <input type="number" id="activity-calories" placeholder="e.g., 300">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="activity-notes">Notes</label>
+                            <input type="text" id="activity-notes" placeholder="Optional notes about your activity">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button id="cancel-activity-button" class="button-secondary">Cancel</button>
+                        <button id="save-activity-button">Add Activity</button>
+                    </div>
+                </div>
+
+                <div id="activity-log">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="col-activity">Activity</th>
+                                <th class="col-duration">Duration</th>
+                                <th class="col-distance">Distance</th>
+                                <th class="col-calories">Calories</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-log-body">
+                            <tr>
+                                <td class="col-activity">
+                                    <div class="activity-name">Running</div>
+                                    <div class="activity-notes">Morning run in the park</div>
+                                </td>
+                                <td class="col-duration">30 min</td>
+                                <td class="col-distance">5 km</td>
+                                <td class="col-calories">300</td>
+                                <td class="col-actions">
+                                    <button class="icon-button delete-activity" data-id="1">✕</button>
+                                    <button class="icon-button edit-activity" data-id="1">✎</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
-
 </html>
+
