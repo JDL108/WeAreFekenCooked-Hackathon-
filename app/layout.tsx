@@ -11,7 +11,7 @@ export const metadata = {
   title: "FitTrack - Your Fitness Journey Starts Here",
   description:
     "Track your workouts, monitor your nutrition, and achieve your fitness goals with our comprehensive platform.",
-    generator: 'v0.dev'
+    generator: 'asian_developer_team',
 }
 
 export default function RootLayout({
