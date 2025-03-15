@@ -1,4 +1,4 @@
-// File: /Users/jiadili/Desktop/weAreFekenCoked/WeAreFekenCooked-Hackathon-/app/page.tsx
+// File: /home/jason/WeAreFekenCooked-Hackathon-/app/page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
