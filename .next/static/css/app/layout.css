@@ -1030,9 +1030,6 @@ video {
 .w-\[1px\] {
   width: 1px;
 }
-.w-\[240px\] {
-  width: 240px;
-}
 .w-auto {
   width: auto;
 }
@@ -1222,9 +1219,6 @@ video {
 }
 .items-stretch {
   align-items: stretch;
-}
-.justify-start {
-  justify-content: flex-start;
 }
 .justify-end {
   justify-content: flex-end;

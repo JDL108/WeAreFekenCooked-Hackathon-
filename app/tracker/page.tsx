@@ -28,17 +28,6 @@ export default function TrackerPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="outline" className="w-[240px] justify-start text-left font-normal">
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {format(date, "PPP")}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0" align="end">
-              <Calendar mode="single" selected={date} onSelect={(date) => date && setDate(date)} initialFocus />
-            </PopoverContent>
-          </Popover>
         </div>
       </div>
 

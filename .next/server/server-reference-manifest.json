@@ -1,5 +1,28 @@
 {
-  "node": {},
+  "node": {
+    "40278b397a02547ef526e7c106d28a0fa19be79cbf": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Frichard%2FHackathon%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%7B%22id%22%3A%2240278b397a02547ef526e7c106d28a0fa19be79cbf%22%2C%22exportedName%22%3A%22analyzeFood%22%7D%2C%7B%22id%22%3A%22409ef0615b123e4a7acd9ac45d0d5ae6b20da5a4a1%22%2C%22exportedName%22%3A%22analyzeActivity%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    },
+    "409ef0615b123e4a7acd9ac45d0d5ae6b20da5a4a1": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Frichard%2FHackathon%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%7B%22id%22%3A%2240278b397a02547ef526e7c106d28a0fa19be79cbf%22%2C%22exportedName%22%3A%22analyzeFood%22%7D%2C%7B%22id%22%3A%22409ef0615b123e4a7acd9ac45d0d5ae6b20da5a4a1%22%2C%22exportedName%22%3A%22analyzeActivity%22%7D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    }
+  },
   "edge": {},
   "encryptionKey": "mG9UhYNST5xN+Po284fxaQiRwocJ9sd7kWAwLO9k3/Q="
 }
