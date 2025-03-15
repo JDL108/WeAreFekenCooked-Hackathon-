@@ -68,7 +68,7 @@ export default function ContactPage() {
                 <Phone className="h-6 w-6 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-muted-foreground">(+61) 12-345-678</p>
+                  <p className="text-muted-foreground">412-345-678</p>
                   <p className="text-sm text-muted-foreground mt-1">Mon-Fri from 8am to 5pm</p>
                 </div>
               </div>
