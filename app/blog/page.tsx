@@ -136,7 +136,7 @@ function FeaturedArticle({ title, description, date, author, category, image, ur
           </div>
           <div className="mt-6">
             <Button asChild>
-              <Link href={url} target="_blank" rel="noopener noreferrer">
+              <Link href={url ?? "$"} target="_blank" rel="noopener noreferrer">
                 Read Full Article
               </Link>
             </Button>
@@ -174,7 +174,7 @@ function BlogCard({ title, description, date, author, category, image, url }: Ar
       </CardContent>
       <CardFooter>
         <Button asChild variant="ghost" className="w-full">
-          <Link href={url} target="_blank" rel="noopener noreferrer">
+          <Link href={url ?? "$"} target="_blank" rel="noopener noreferrer">
             Read More
           </Link>
         </Button>
