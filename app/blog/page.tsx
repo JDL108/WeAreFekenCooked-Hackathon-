@@ -1,18 +1,26 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function BlogPage() {
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
+
+  if (!hydrated) return null;
+
   return (
     <div className="container py-10">
       <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Fitness Blog</h1>
           <p className="text-muted-foreground">Latest articles on fitness, nutrition, and wellness.</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline">Categories</Button>
         </div>
       </div>
 
@@ -23,7 +31,8 @@ export default function BlogPage() {
           date="March 15, 2023"
           author="Dr. Sarah Johnson"
           category="Nutrition"
-          image="/placeholder.svg?height=400&width=800"
+          image="10_myths.png?height=400&width=800"
+          url="https://habs.uq.edu.au/blog/2023/10/debunking-10-common-nutrition-myths"
         />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -33,7 +42,8 @@ export default function BlogPage() {
             date="March 10, 2023"
             author="Mike Thompson"
             category="Fitness"
-            image="/placeholder.svg?height=200&width=300"
+            image="workout_routine.png?height=200&width=300"
+            url="https://www.self.com/story/fitness-resistance-building-sustainable-workout-program"
           />
           <BlogCard
             title="The Science of Protein: How Much Do You Really Need?"
@@ -41,60 +51,35 @@ export default function BlogPage() {
             date="March 5, 2023"
             author="Lisa Chen, RD"
             category="Nutrition"
-            image="/placeholder.svg?height=200&width=300"
+            image="howmuch_protein.png?height=200&width=300"
+            url="https://www.health.harvard.edu/blog/how-much-protein-do-you-need-every-day-201506188096"
           />
           <BlogCard
             title="Recovery Techniques for Athletes"
             description="Optimize your recovery to improve performance and prevent injuries."
             date="February 28, 2023"
-            author="James Wilson, PT"
+            author="Shona L. Halson, PT"
             category="Recovery"
-            image="/placeholder.svg?height=200&width=300"
+            image="recovery_techniques.png?height=200&width=300"
+            url="https://www.gssiweb.org/sports-science-exchange/article/sse-120-recovery-techniques-for-athletes"
           />
-          <BlogCard
-            title="Mindfulness and Exercise: The Mental Benefits of Fitness"
-            description="How regular physical activity can improve your mental health and well-being."
-            date="February 20, 2023"
-            author="Dr. Emily Roberts"
-            category="Wellness"
-            image="/placeholder.svg?height=200&width=300"
-          />
-          <BlogCard
-            title="Beginner's Guide to Strength Training"
-            description="Essential tips and techniques for those new to weight lifting."
-            date="February 15, 2023"
-            author="Chris Davis"
-            category="Fitness"
-            image="/placeholder.svg?height=200&width=300"
-          />
-          <BlogCard
-            title="Healthy Meal Prep Ideas for Busy People"
-            description="Quick and nutritious meal preparation strategies for those with limited time."
-            date="February 10, 2023"
-            author="Maria Gonzalez"
-            category="Nutrition"
-            image="/placeholder.svg?height=200&width=300"
-          />
-        </div>
-
-        <div className="flex justify-center">
-          <Button variant="outline">Load More Articles</Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 interface FeaturedArticleProps {
-  title: string
-  description: string
-  date: string
-  author: string
-  category: string
-  image: string
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  category: string;
+  image: string;
+  url?: string;
 }
 
-function FeaturedArticle({ title, description, date, author, category, image }: FeaturedArticleProps) {
+function FeaturedArticle({ title, description, date, author, category, image, url }: FeaturedArticleProps) {
   return (
     <div className="relative overflow-hidden rounded-lg border">
       <div className="flex flex-col md:flex-row">
@@ -115,25 +100,28 @@ function FeaturedArticle({ title, description, date, author, category, image }: 
           </div>
           <div className="mt-6">
             <Button asChild>
-              <Link href={`/blog/${title.toLowerCase().replace(/\s+/g, "-")}`}>Read Full Article</Link>
+              <Link href={url} target="_blank" rel="noopener noreferrer">
+                Read Full Article
+              </Link>
             </Button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 interface BlogCardProps {
-  title: string
-  description: string
-  date: string
-  author: string
-  category: string
-  image: string
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  category: string;
+  image: string;
+  url?: string;
 }
 
-function BlogCard({ title, description, date, author, category, image }: BlogCardProps) {
+function BlogCard({ title, description, date, author, category, image, url }: BlogCardProps) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -150,10 +138,11 @@ function BlogCard({ title, description, date, author, category, image }: BlogCar
       </CardContent>
       <CardFooter>
         <Button asChild variant="ghost" className="w-full">
-          <Link href={`/blog/${title.toLowerCase().replace(/\s+/g, "-")}`}>Read More</Link>
+          <Link href={url} target="_blank" rel="noopener noreferrer">
+            Read More
+          </Link>
         </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }
-
