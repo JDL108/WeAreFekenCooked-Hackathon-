@@ -25,7 +25,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/workouts">
-                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                  <Button size="lg" variant="outline" className="hover:bg-white hover:text-black border-white bg-white/10 text-white">
                     Explore Workouts
                   </Button>
                 </Link>
@@ -33,9 +33,9 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/placeholder.svg?height=400&width=400"
+                src="/food.avif?height=400&width=400"
                 alt="Fitness"
-                width={400}
+                width={800}
                 height={400}
                 className="rounded-lg object-cover"
               />

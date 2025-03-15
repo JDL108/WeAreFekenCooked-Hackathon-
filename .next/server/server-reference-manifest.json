@@ -1,5 +1,28 @@
 {
-  "node": {},
+  "node": {
+    "40175e73b104832462fb48f64291d1598d6984c650": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fjiadili%2FDesktop%2FweAreFekenCoked%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%5B%2240175e73b104832462fb48f64291d1598d6984c650%22%2C%22analyzeFood%22%5D%2C%5B%22403a436d833589c11355d809b4e7c7787e64bfc16b%22%2C%22analyzeActivity%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    },
+    "403a436d833589c11355d809b4e7c7787e64bfc16b": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fjiadili%2FDesktop%2FweAreFekenCoked%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%5B%2240175e73b104832462fb48f64291d1598d6984c650%22%2C%22analyzeFood%22%5D%2C%5B%22403a436d833589c11355d809b4e7c7787e64bfc16b%22%2C%22analyzeActivity%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    }
+  },
   "edge": {},
   "encryptionKey": "mG9UhYNST5xN+Po284fxaQiRwocJ9sd7kWAwLO9k3/Q="
 }
