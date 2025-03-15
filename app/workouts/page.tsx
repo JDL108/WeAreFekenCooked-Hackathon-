@@ -1,9 +1,11 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink } from "lucide-react"
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExternalLink } from "lucide-react";
 
 export default function WorkoutsPage() {
   return (
@@ -136,19 +138,24 @@ export default function WorkoutsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
+  );
 }
 
 interface WorkoutCardProps {
-  title: string
-  description: string
-  category: string
-  difficulty: string
-  image: string
-  videoUrl?: string
+  title: string;
+  description: string;
+  category: string;
+  difficulty: string;
+  image: string;
+  videoUrl?: string;
 }
 
 function WorkoutCard({ title, description, category, difficulty, image, videoUrl }: WorkoutCardProps) {
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Do nothing
+  };
+
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -165,10 +172,7 @@ function WorkoutCard({ title, description, category, difficulty, image, videoUrl
         <p>{description}</p>
       </CardContent>
       <CardFooter className="flex flex-col space-y-2">
-        <Button 
-          className="w-full"
-          onClick={(e) => e.preventDefault()}
-        >
+        <Button className="w-full" onClick={handleButtonClick}>
           View Details
         </Button>
         {videoUrl && (
@@ -181,5 +185,5 @@ function WorkoutCard({ title, description, category, difficulty, image, videoUrl
         )}
       </CardFooter>
     </Card>
-  )
+  );
 }
