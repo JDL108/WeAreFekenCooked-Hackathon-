@@ -1,9 +1,17 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+}
+
 #nav-bar {
-    height: 10vh; 
+    height: 7vh; 
     width: 100vw;
     display: flex;
-    flex-direction: row;
     background-color: blue;
+    align-items: center;
+    gap: 15px;
+    padding-left: 15px;
 }
 
 #logo{
