@@ -1,0 +1,21 @@
+[
+    {
+      "id": "1",
+      "name": "Oatmeal with Berries",
+      "calories": 350,
+      "protein": 10,
+      "carbs": 60,
+      "fat": 7,
+      "mealType": "breakfast"
+    },
+    {
+      "id": "2",
+      "name": "Chicken Salad",
+      "calories": 450,
+      "protein": 35,
+      "carbs": 20,
+      "fat": 25,
+      "mealType": "lunch"
+    }
+  ]
+  

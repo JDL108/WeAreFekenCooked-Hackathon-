@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -55,113 +55,117 @@ interface CalorieTrackerProps {
 
 function CalorieTracker({ date }: CalorieTrackerProps) {
   const [meals, setMeals] = useState<
-    Array<{
-      id: string
-      name: string
-      calories: number
-      protein: number
-      carbs: number
-      fat: number
-      mealType: string
-    }>
-  >([
-    {
-      id: "1",
-      name: "Oatmeal with Berries",
-      calories: 350,
-      protein: 10,
-      carbs: 60,
-      fat: 7,
+  Array<{
+    id: string;
+    name: string;
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+    mealType: string;
+  }>
+>([]);
+
+const [newMeal, setNewMeal] = useState({
+  name: "",
+  calories: "",
+  protein: "",
+  carbs: "",
+  fat: "",
+  mealType: "breakfast",
+});
+
+const [isAddingMeal, setIsAddingMeal] = useState(false);
+const [intelligentInput, setIntelligentInput] = useState("");
+const [isProcessing, setIsProcessing] = useState(false);
+
+// Fetch meals data from localStorage
+useEffect(() => {
+  const storedMeals = localStorage.getItem("meals");
+  if (storedMeals) {
+    setMeals(JSON.parse(storedMeals)); // Parse and set meals if they exist in localStorage
+  }
+}, []);
+
+const handleAddMeal = () => {
+  if (newMeal.name && newMeal.calories) {
+    const updatedMeals = [
+      ...meals,
+      {
+        id: Date.now().toString(),
+        name: newMeal.name,
+        calories: Number.parseInt(newMeal.calories),
+        protein: Number.parseInt(newMeal.protein) || 0,
+        carbs: Number.parseInt(newMeal.carbs) || 0,
+        fat: Number.parseInt(newMeal.fat) || 0,
+        mealType: newMeal.mealType,
+      },
+    ];
+
+    setMeals(updatedMeals);
+
+    // Save the updated meals to localStorage
+    localStorage.setItem("meals", JSON.stringify(updatedMeals));
+
+    setNewMeal({
+      name: "",
+      calories: "",
+      protein: "",
+      carbs: "",
+      fat: "",
       mealType: "breakfast",
-    },
-    {
-      id: "2",
-      name: "Chicken Salad",
-      calories: 450,
-      protein: 35,
-      carbs: 20,
-      fat: 25,
-      mealType: "lunch",
-    },
-  ])
+    });
 
-  const [newMeal, setNewMeal] = useState({
-    name: "",
-    calories: "",
-    protein: "",
-    carbs: "",
-    fat: "",
-    mealType: "breakfast",
-  })
+    setIsAddingMeal(false);
+  }
+};
 
-  const [isAddingMeal, setIsAddingMeal] = useState(false)
-  const [intelligentInput, setIntelligentInput] = useState("")
-  const [isProcessing, setIsProcessing] = useState(false)
+const handleDeleteMeal = (id: string) => {
+  const updatedMeals = meals.filter((meal) => meal.id !== id);
+  setMeals(updatedMeals);
 
-  const handleAddMeal = () => {
-    if (newMeal.name && newMeal.calories) {
-      setMeals([
+  // Update localStorage after deleting a meal
+  localStorage.setItem("meals", JSON.stringify(updatedMeals));
+};
+
+const processIntelligentInput = async () => {
+  if (!intelligentInput.trim()) return;
+
+  setIsProcessing(true);
+  try {
+    const response = await analyzeFood(intelligentInput);
+
+    // Add the analyzed food to meals
+    if (response) {
+      const updatedMeals = [
         ...meals,
         {
           id: Date.now().toString(),
-          name: newMeal.name,
-          calories: Number.parseInt(newMeal.calories),
-          protein: Number.parseInt(newMeal.protein) || 0,
-          carbs: Number.parseInt(newMeal.carbs) || 0,
-          fat: Number.parseInt(newMeal.fat) || 0,
-          mealType: newMeal.mealType,
+          name: response.title,
+          calories: response.calories,
+          protein: response.protein,
+          carbs: response.carbs,
+          fat: response.fat,
+          mealType: "meal", // Default meal type
         },
-      ])
+      ];
 
-      setNewMeal({
-        name: "",
-        calories: "",
-        protein: "",
-        carbs: "",
-        fat: "",
-        mealType: "breakfast",
-      })
+      setMeals(updatedMeals);
 
-      setIsAddingMeal(false)
+      // Save the updated meals to localStorage
+      localStorage.setItem("meals", JSON.stringify(updatedMeals));
+
+      // Clear the input
+      setIntelligentInput("");
     }
+  } catch (error) {
+    console.error("Error processing food input:", error);
+    // You could add error handling UI here
+  } finally {
+    setIsProcessing(false);
   }
+};
 
-  const handleDeleteMeal = (id: string) => {
-    setMeals(meals.filter((meal) => meal.id !== id))
-  }
-
-  const processIntelligentInput = async () => {
-    if (!intelligentInput.trim()) return
-
-    setIsProcessing(true)
-    try {
-      const response = await analyzeFood(intelligentInput)
-
-      // Add the analyzed food to meals
-      if (response) {
-        setMeals([
-          ...meals,
-          {
-            id: Date.now().toString(),
-            name: intelligentInput,
-            calories: response.calories,
-            protein: response.protein,
-            carbs: response.carbs,
-            fat: response.fat,
-            mealType: "meal", // Default meal type
-          },
-        ])
-
-        // Clear the input
-        setIntelligentInput("")
-      }
-    } catch (error) {
-      console.error("Error processing food input:", error)
-      // You could add error handling UI here
-    } finally {
-      setIsProcessing(false)
-    }
-  }
 
   const totalCalories = meals.reduce((sum, meal) => sum + meal.calories, 0)
   const totalProtein = meals.reduce((sum, meal) => sum + meal.protein, 0)
