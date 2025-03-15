@@ -1,8 +1,5 @@
 {
-  "/tracker/page": "app/tracker/page.js",
-  "/calorie-calculator/page": "app/calorie-calculator/page.js",
   "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/workouts/page": "app/workouts/page.js",
-  "/blog/page": "app/blog/page.js"
+  "/calorie-calculator/page": "app/calorie-calculator/page.js",
+  "/tracker/page": "app/tracker/page.js"
 }

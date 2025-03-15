@@ -1,4 +1,4 @@
-// File: /Users/kanaygupta/Documents/WeAreFekenCooked-Hackathon-/app/calorie-calculator/page.tsx
+// File: /root/WeAreFekenCooked-Hackathon-/app/calorie-calculator/page.tsx
 import * as entry from '../../../../app/calorie-calculator/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

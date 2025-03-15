@@ -1,4 +1,4 @@
-// File: /Users/kanaygupta/Documents/WeAreFekenCooked-Hackathon-/app/tracker/page.tsx
+// File: /root/WeAreFekenCooked-Hackathon-/app/tracker/page.tsx
 import * as entry from '../../../../app/tracker/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
