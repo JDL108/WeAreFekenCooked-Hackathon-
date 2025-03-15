@@ -56,40 +56,77 @@ interface ActivityData {
   calories: number;
 }
 
+// export async function analyzeActivity(
+//   description: string
+// ): Promise<ActivityData | null> {
+//   try {
+//     const prompt = `Can you analyze this physical activity description and return only the following values in this exact order: activity type, duration in minutes, distance in km (if applicable, otherwise 0), calories burned. Format your response as comma-separated values only, like this: "running, 30, 5, 300". The description is: "${description}"`;
+
+//     const { text } = await generateText({
+//       model: openai("gpt-4o"),
+//       prompt: prompt,
+//       system:
+//         "You are a fitness expert. Provide accurate estimates for activity data based on descriptions. Only respond with the values in the exact format requested.",
+//     });
+
+//     // Parse the response
+//     const values = text.split(",").map((val) => val.trim());
+
+//     if (values.length >= 4) {
+//       const activityType = values[0].toLowerCase();
+//       const duration = Number.parseInt(values[1]);
+//       const distance = Number.parseFloat(values[2]);
+//       const calories = Number.parseInt(values[3]);
+
+//       if (!isNaN(duration) && !isNaN(calories)) {
+//         return {
+//           type: activityType,
+//           duration: duration,
+//           distance: distance > 0 ? distance : undefined,
+//           calories: calories,
+//         };
+//       }
+//     }
+
+//     console.error("Failed to parse AI response:", text);
+//     return null;
+//   } catch (error) {
+//     console.error("Error analyzing activity:", error);
+//     return null;
+//   }
+// }
+
 export async function analyzeActivity(
   description: string
 ): Promise<ActivityData | null> {
   try {
-    const prompt = `Can you analyze this physical activity description and return only the following values in this exact order: activity type, duration in minutes, distance in km (if applicable, otherwise 0), calories burned. Format your response as comma-separated values only, like this: "running, 30, 5, 300". The description is: "${description}"`;
+    const prompt = `Can you analyze this physical activity description and return only the following values in this exact order: activity type, duration in minutes, distance in km, calories burned. Format your response as comma-separated values only, like this: "Running, 30, 5, 300". Give an estimate for any missing values. The description is: "${description}"`;
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-    const { text } = await generateText({
-      model: openai("gpt-4o"),
-      prompt: prompt,
-      system:
-        "You are a fitness expert. Provide accurate estimates for activity data based on descriptions. Only respond with the values in the exact format requested.",
-    });
+    const genAI = new GoogleGenerativeAI(
+      "AIzaSyA5c8E1Ubc_xXwqTwNYbf8_7ESDNmz2EzA"
+    );
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const response = await model.generateContent(prompt);
 
+    // Parse the response as JSON
+    const text = response.response.text();
+    console.log(prompt, text);
     // Parse the response
-    const values = text.split(",").map((val) => val.trim());
-
-    if (values.length >= 4) {
-      const activityType = values[0].toLowerCase();
-      const duration = Number.parseInt(values[1]);
-      const distance = Number.parseFloat(values[2]);
-      const calories = Number.parseInt(values[3]);
-
-      if (!isNaN(duration) && !isNaN(calories)) {
-        return {
-          type: activityType,
-          duration: duration,
-          distance: distance > 0 ? distance : undefined,
-          calories: calories,
-        };
-      }
+    const values = text.split(",").map((val: string) => val.trim());
+    console.log(values);
+    if (values.length == 4) {
+      console.log("all good");
+      return {
+        type: values[0],
+        duration: Number.parseInt(values[1]),
+        distance: Number.parseInt(values[2]),
+        calories: Number.parseInt(values[3]),
+      };
+    } else {
+      console.error("Failed to parse AI response:", text);
+      return null;
     }
-
-    console.error("Failed to parse AI response:", text);
-    return null;
   } catch (error) {
     console.error("Error analyzing activity:", error);
     return null;
