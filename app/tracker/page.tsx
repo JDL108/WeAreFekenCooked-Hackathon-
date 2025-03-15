@@ -678,10 +678,6 @@ function ActivityTracker({ date }: ActivityTrackerProps) {
                           <X className="h-4 w-4" />
                           <span className="sr-only">Delete</span>
                         </Button>
-                        <Button variant="ghost" size="icon">
-                          <Edit className="h-4 w-4" />
-                          <span className="sr-only">Edit</span>
-                        </Button>
                       </div>
                     </div>
                   ))}
