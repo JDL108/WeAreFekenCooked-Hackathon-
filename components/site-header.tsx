@@ -11,6 +11,14 @@ export function SiteHeader() {
         <MainNav />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
+            <Link href="/login">
+              <Button variant="ghost" size="sm">
+                Login
+              </Button>
+            </Link>
+            <Link href="/signup">
+              <Button size="sm">Sign Up</Button>
+            </Link>
             <ModeToggle />
           </nav>
         </div>

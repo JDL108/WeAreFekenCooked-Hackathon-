@@ -1,8 +1,5 @@
 "use server";
 
-import { generateText } from "ai";
-import { openai } from "@ai-sdk/openai";
-
 interface FoodNutrition {
   title: string;
   calories: number;
