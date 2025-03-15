@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link"
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 // Move the blog data outside the component to avoid re-creation on each render
 const BLOG_DATA = {
@@ -15,7 +15,7 @@ const BLOG_DATA = {
     author: "Dr. Sarah Johnson",
     category: "Nutrition",
     image: "/10_myths.png", // Ensure paths start with / for public directory
-    url: "https://habs.uq.edu.au/blog/2023/10/debunking-10-common-nutrition-myths"
+    url: "https://habs.uq.edu.au/blog/2023/10/debunking-10-common-nutrition-myths",
   },
   articles: [
     {
@@ -25,7 +25,7 @@ const BLOG_DATA = {
       author: "Mike Thompson",
       category: "Fitness",
       image: "/workout_routine.png",
-      url: "https://www.self.com/story/fitness-resistance-building-sustainable-workout-program"
+      url: "https://www.self.com/story/fitness-resistance-building-sustainable-workout-program",
     },
     {
       title: "The Science of Protein: How Much Do You Really Need?",
@@ -34,7 +34,7 @@ const BLOG_DATA = {
       author: "Lisa Chen, RD",
       category: "Nutrition",
       image: "/howmuch_protein.png",
-      url: "https://www.health.harvard.edu/blog/how-much-protein-do-you-need-every-day-201506188096"
+      url: "https://www.health.harvard.edu/blog/how-much-protein-do-you-need-every-day-201506188096",
     },
     {
       title: "Recovery Techniques for Athletes",
@@ -43,32 +43,34 @@ const BLOG_DATA = {
       author: "Shona L. Halson, PT",
       category: "Recovery",
       image: "/recovery_techniques.png",
-      url: "https://www.gssiweb.org/sports-science-exchange/article/sse-120-recovery-techniques-for-athletes"
-    }
-  ]
-};
+      url: "https://www.gssiweb.org/sports-science-exchange/article/sse-120-recovery-techniques-for-athletes",
+    },
+  ],
+}
 
 export default function BlogPage() {
   // Use a stable reference for the hydration state
-  const [isClient, setIsClient] = useState(false);
-  
+  const [isClient, setIsClient] = useState(false)
+
   // Only run once on client-side
   useEffect(() => {
-    setIsClient(true);
-  }, []);
+    setIsClient(true)
+  }, [])
 
   // Return a skeleton or null during SSR
   if (!isClient) {
-    return <div className="container py-10">
-      <div className="h-8 w-48 bg-gray-200 rounded mb-2" />
-      <div className="h-4 w-64 bg-gray-200 rounded mb-8" />
-      <div className="h-80 bg-gray-200 rounded mb-8" />
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-64 bg-gray-200 rounded" />
-        ))}
+    return (
+      <div className="container py-10">
+        <div className="h-8 w-48 bg-gray-200 rounded mb-2" />
+        <div className="h-4 w-64 bg-gray-200 rounded mb-8" />
+        <div className="h-80 bg-gray-200 rounded mb-8" />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-64 bg-gray-200 rounded" />
+          ))}
+        </div>
       </div>
-    </div>;
+    )
   }
 
   return (
@@ -88,19 +90,25 @@ export default function BlogPage() {
             <BlogCard key={index} {...article} />
           ))}
         </div>
+
+        <div className="flex justify-center">
+          <Button size="lg" asChild>
+            <Link href="/paywall">Explore More Articles</Link>
+          </Button>
+        </div>
       </div>
     </div>
-  );
+  )
 }
 
 interface ArticleProps {
-  title: string;
-  description: string;
-  date: string;
-  author: string;
-  category: string;
-  image: string;
-  url?: string;
+  title: string
+  description: string
+  date: string
+  author: string
+  category: string
+  image: string
+  url?: string
 }
 
 function FeaturedArticle({ title, description, date, author, category, image, url }: ArticleProps) {
@@ -109,16 +117,16 @@ function FeaturedArticle({ title, description, date, author, category, image, ur
       <div className="flex flex-col md:flex-row">
         <div className="relative h-60 w-full md:h-auto md:w-1/2">
           {/* Add error handling and proper dimensions */}
-          <Image 
-            src={image || "/placeholder.svg"} 
-            alt={title} 
-            fill 
+          <Image
+            src={image || "/placeholder.svg"}
+            alt={title}
+            fill
             className="object-cover"
             priority // Load this image first
             onError={(e) => {
               // Fallback to placeholder on error
-              const target = e.target as HTMLImageElement;
-              target.src = "/placeholder.svg";
+              const target = e.target as HTMLImageElement
+              target.src = "/placeholder.svg"
             }}
           />
         </div>
@@ -136,30 +144,28 @@ function FeaturedArticle({ title, description, date, author, category, image, ur
           </div>
           <div className="mt-6">
             <Button asChild>
-              <Link href={url ?? "$"} target="_blank" rel="noopener noreferrer">
-                Read Full Article
-              </Link>
+              <Link href="/paywall">Read Full Article</Link>
             </Button>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 function BlogCard({ title, description, date, author, category, image, url }: ArticleProps) {
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
-        <Image 
-          src={image || "/placeholder.svg"} 
-          alt={title} 
-          fill 
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
           className="object-cover"
           onError={(e) => {
             // Fallback to placeholder on error
-            const target = e.target as HTMLImageElement;
-            target.src = "/placeholder.svg";
+            const target = e.target as HTMLImageElement
+            target.src = "/placeholder.svg"
           }}
         />
         <div className="absolute top-2 right-2 bg-primary/10 text-primary px-2 py-1 rounded text-xs">{category}</div>
@@ -174,11 +180,9 @@ function BlogCard({ title, description, date, author, category, image, url }: Ar
       </CardContent>
       <CardFooter>
         <Button asChild variant="ghost" className="w-full">
-          <Link href={url ?? "$"} target="_blank" rel="noopener noreferrer">
-            Read More
-          </Link>
+          <Link href="/paywall">Read More</Link>
         </Button>
       </CardFooter>
     </Card>
-  );
+  )
 }

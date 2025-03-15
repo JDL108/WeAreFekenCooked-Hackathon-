@@ -59,7 +59,7 @@ export default function ContactPage() {
                 <Mail className="h-6 w-6 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-medium">Email</h3>
-                  <p className="text-muted-foreground">support@fittrack.com</p>
+                  <p className="text-muted-foreground">support@FitTrack.com</p>
                   <p className="text-sm text-muted-foreground mt-1">We'll respond within 24 hours</p>
                 </div>
               </div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 <Phone className="h-6 w-6 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-muted-foreground">(555) 123-4567</p>
+                  <p className="text-muted-foreground">(+61) 12-345-678</p>
                   <p className="text-sm text-muted-foreground mt-1">Mon-Fri from 8am to 5pm</p>
                 </div>
               </div>
@@ -77,8 +77,8 @@ export default function ContactPage() {
                 <MapPin className="h-6 w-6 text-primary mt-0.5" />
                 <div>
                   <h3 className="font-medium">Office</h3>
-                  <p className="text-muted-foreground">123 Fitness Street</p>
-                  <p className="text-muted-foreground">San Francisco, CA 94103</p>
+                  <p className="text-muted-foreground">330 Anzac Parade</p>
+                  <p className="text-muted-foreground">Kensington, NSW 2033</p>
                 </div>
               </div>
             </div>

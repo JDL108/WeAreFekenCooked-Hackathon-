@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ExternalLink } from "lucide-react";
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { ExternalLink } from "lucide-react"
 
 export default function WorkoutsPage() {
   return (
@@ -137,25 +137,26 @@ export default function WorkoutsPage() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <div className="mt-10 flex justify-center">
+        <Button size="lg" asChild>
+          <Link href="/paywall">Explore More Options</Link>
+        </Button>
+      </div>
     </div>
-  );
+  )
 }
 
 interface WorkoutCardProps {
-  title: string;
-  description: string;
-  category: string;
-  difficulty: string;
-  image: string;
-  videoUrl?: string;
+  title: string
+  description: string
+  category: string
+  difficulty: string
+  image: string
+  videoUrl?: string
 }
 
 function WorkoutCard({ title, description, category, difficulty, image, videoUrl }: WorkoutCardProps) {
-  const handleButtonClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    // Do nothing
-  };
-
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full">
@@ -172,18 +173,23 @@ function WorkoutCard({ title, description, category, difficulty, image, videoUrl
         <p>{description}</p>
       </CardContent>
       <CardFooter className="flex flex-col space-y-2">
-        <Button className="w-full" onClick={handleButtonClick}>
-          View Details
+        <Button asChild className="w-full">
+          <Link href="/paywall">View Details</Link>
         </Button>
         {videoUrl && (
           <Button variant="outline" asChild className="w-full">
-            <Link href={videoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+            <Link
+              href={videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2"
+            >
               <ExternalLink size={16} />
-              Watch Video Tutorial
+              Free Video Tutorial
             </Link>
           </Button>
         )}
       </CardFooter>
     </Card>
-  );
+  )
 }
