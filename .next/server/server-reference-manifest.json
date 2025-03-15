@@ -1,5 +1,28 @@
 {
-  "node": {},
+  "node": {
+    "405383bd7c42b94dccbffb8879287447ae21a4b105": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fdanthepan%2FDesktop%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%5B%22405383bd7c42b94dccbffb8879287447ae21a4b105%22%2C%22analyzeActivity%22%5D%2C%5B%2240833015dcaac81cca89e76a2a09304d518e13dda1%22%2C%22analyzeFood%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    },
+    "40833015dcaac81cca89e76a2a09304d518e13dda1": {
+      "workers": {
+        "app/tracker/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fdanthepan%2FDesktop%2FWeAreFekenCooked-Hackathon-%2Flib%2Fai-service.ts%22%2C%5B%5B%22405383bd7c42b94dccbffb8879287447ae21a4b105%22%2C%22analyzeActivity%22%5D%2C%5B%2240833015dcaac81cca89e76a2a09304d518e13dda1%22%2C%22analyzeFood%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/tracker/page": "action-browser"
+      }
+    }
+  },
   "edge": {},
   "encryptionKey": "mG9UhYNST5xN+Po284fxaQiRwocJ9sd7kWAwLO9k3/Q="
 }

@@ -33,7 +33,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/RICHARD_Z.png?height=400&width=400"
+                src="/FitTrack.png?height=400&width=400"
                 alt="Fitness"
                 width={400}
                 height={400}
@@ -132,7 +132,7 @@ export default function Home() {
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Richard Z.</h3>
@@ -144,11 +144,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/RICHARD_Z.png?height=100&width=100"
+                src="/Jason_L.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Jason L.</h3>
@@ -160,17 +160,17 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/RICHARD_Z.png?height=100&width=100"
+                src="/White_Girl.jpg?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
-                className="rounded-full"
+                className="w-24 h-24 rounded-full object-cover"
               />
               <div className="space-y-2 text-center">
                 <h3 className="text-xl font-bold">Emily W.</h3>
                 <p className="text-sm text-muted-foreground">
-                  "The nutrition articles and calorie calculator helped me understand my body's needs. I feel more
-                  energetic t`han ever!"
+                  "The nutrition articles and calorie tracker helped me understand my body's needs. I feel more
+                  energetic than ever!"
                 </p>
               </div>
             </div>

@@ -1,3 +1,9 @@
 {
-  "/page": "app/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/workouts/page": "app/workouts/page.js",
+  "/calorie-calculator/page": "app/calorie-calculator/page.js",
+  "/tracker/page": "app/tracker/page.js",
+  "/blog/page": "app/blog/page.js",
+  "/contact/page": "app/contact/page.js"
 }
