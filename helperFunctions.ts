@@ -1,4 +1,5 @@
-import User from "dataStore";
+import { getData, Data, User } from './dataStore';
+import { sha256 } from 'js-sha256'
 
 /**
  *
@@ -40,23 +41,10 @@ export function checkValidPassword(password: string): boolean {
 }
 
 /**
- * Helper function to check if there are duplicate strings within array
- * @param {object} answerOptions
- * @returns {boolean}
+ * Function that hashes a password using sha256
+ * @param {string} password
+ * @returns {string}
  */
-export function hasDuplicateStrings(answerOptions: answerOption[]): boolean {
-  const answers = answerOptions.map(option => option.answer);
-  return new Set(answers).size < answerOptions.length;
-}
-
-/**
- * Helper function to check if there are no correct answers within answer options array
- * @param {object} answerOptions
- * @returns {boolean}
- */
-export function hasCorrect(answerOptions: answerOption[]): boolean {
-  if (answerOptions.find(a => a.correct)) {
-    return true;
-  }
-  return false;
+export function hashPassword(password: string): string {
+  return sha256(password);
 }

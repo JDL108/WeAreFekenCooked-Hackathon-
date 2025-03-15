@@ -16,6 +16,11 @@ export type User = {
   activeSessionIds: number[],
 }
 
+export type tokenObject = {
+  sessionId: number;
+  userId: number;
+};
+
 let dataStore: Data | undefined;
 
 const DATABASE_FILE = 'database.json';

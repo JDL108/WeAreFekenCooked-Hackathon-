@@ -1,3 +1,18 @@
+import { getData, Data, saveData } from './dataStore';
+import {
+  findUserWithEmail,
+  checkNameIsValidInput,
+  checkValidPassword,
+  hashPassword
+} from './helperFunctions';
+import {
+  generateToken,
+  generateSessionId
+} from './token';
+import {
+  isEmail
+} from 'is-email';
+
 /**
  * Register a user with an email, password, and name.
  * @param {String} email
@@ -6,7 +21,7 @@
  * @param {String} nameLast
  * @returns {Object}
  */
-export function adminAuthRegister(
+export function userRegister(
   email: string,
   password: string,
   nameFirst: string,
