@@ -170,7 +170,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold">Emily W.</h3>
                 <p className="text-sm text-muted-foreground">
                   "The nutrition articles and calorie calculator helped me understand my body's needs. I feel more
-                  energetic than ever!"
+                  energetic t`han ever!"
                 </p>
               </div>
             </div>
