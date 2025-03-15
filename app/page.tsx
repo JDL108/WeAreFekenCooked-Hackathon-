@@ -25,7 +25,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/workouts">
-                  <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                  <Button size="lg" variant="outline" className="hover:border-white bg-white/10">
                     Explore Workouts
                   </Button>
                 </Link>

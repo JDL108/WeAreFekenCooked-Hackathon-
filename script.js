@@ -195,6 +195,7 @@ document.addEventListener("click", (e) => {
 // Intelligent Food Tracking
 analyzeFoodButton.addEventListener("click", async () => {
   const description = foodInput.value.trim()
+  console.log(description)
   if (!description) return
 
   analyzeFoodButton.textContent = "Analyzing..."
@@ -219,6 +220,7 @@ analyzeFoodButton.addEventListener("click", async () => {
       foodInput.value = ""
     }
   } catch (error) {
+    console.error("dsadsa")
     console.error("Error analyzing food:", error)
     alert("Failed to analyze food. Please try again.")
   } finally {
@@ -230,6 +232,7 @@ analyzeFoodButton.addEventListener("click", async () => {
 // Intelligent Activity Tracking
 analyzeActivityButton.addEventListener("click", async () => {
   const description = activityInput.value.trim()
+  console.log(description)
   if (!description) return
 
   analyzeActivityButton.textContent = "Analyzing..."

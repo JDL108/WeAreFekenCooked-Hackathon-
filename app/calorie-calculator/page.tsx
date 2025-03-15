@@ -288,37 +288,30 @@ export default function CalorieCalculatorPage() {
                 <div>
                   <h3 className="font-semibold">Basal Metabolic Rate (BMR)</h3>
                   <p className="text-muted-foreground">
-                    BMR is the number of calories your body needs to maintain basic physiological functions while at
-                    rest. We calculate this using the Mifflin-St Jeor Equation, which is considered one of the most
-                    accurate formulas.
+                  BMR number of cals you need to maintian a certain weight without phyiscal activities. This is calculated using the Mifflin-St Jeor Equation
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-semibold">Total Daily Energy Expenditure (TDEE)</h3>
                   <p className="text-muted-foreground">
-                    Your TDEE, or maintenance calories, is your BMR multiplied by an activity factor based on your
-                    lifestyle and exercise habits.
+                  This is your maintenance calories, which is your BMR multiplied by an activity factor based on your physical exercise.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-semibold">Calorie Targets</h3>
                   <p className="text-muted-foreground">
-                    For weight loss, we typically recommend a 500 calorie deficit, which should result in about 1 pound
-                    of weight loss per week. For weight gain, we recommend a 500 calorie surplus, which should result in
-                    about 1 pound of weight gain per week.
+                  To lose weight, a target of 500 calories below TDEE, which should result in a loss of approx 0.4kgs per week. For weight gain, a target of a 500 calory surplus is recommended, which results in a gain of 0.4kgs per week.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="font-semibold">Macronutrients</h3>
                   <p className="text-muted-foreground">
-                    Protein: We recommend 2g per kg of bodyweight to support muscle maintenance and growth.
+                    Protein: 2g of protien per kg of bodyweight is recommended to support muscle maintenance and growth.
                     <br />
-                    Fats: About 25% of your total calories should come from healthy fats.
-                    <br />
-                    Carbs: The remaining calories come from carbohydrates to fuel your activities.
+                    Carbs: The remaining calories come from carbohydrates to power your activities.
                   </p>
                 </div>
 
