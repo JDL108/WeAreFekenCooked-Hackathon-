@@ -154,7 +154,7 @@ function CalorieTracker({ date }: CalorieTrackerProps) {
           ...meals,
           {
             id: Date.now().toString(),
-            name: intelligentInput,
+            name: response.title,
             calories: response.calories,
             protein: response.protein,
             carbs: response.carbs,
