@@ -33,7 +33,7 @@ export default function Home() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/RICHARD_Z?height=400&width=400"
+                src="/RICHARD_Z.png?height=400&width=400"
                 alt="Fitness"
                 width={400}
                 height={400}
@@ -128,7 +128,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/RICHARD_Z?height=100&width=100"
+                src="/RICHARD_Z.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
@@ -144,7 +144,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/RICHARD_Z?height=100&width=100"
+                src="/RICHARD_Z.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
@@ -160,7 +160,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center space-y-4 border rounded-lg p-6 shadow-sm">
               <Image
-                src="/RICHARD_Z?height=100&width=100"
+                src="/RICHARD_Z.png?height=100&width=100"
                 alt="User"
                 width={100}
                 height={100}
