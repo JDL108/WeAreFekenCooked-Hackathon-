@@ -15,7 +15,7 @@ export async function analyzeFood(
   description: string
 ): Promise<FoodNutrition | null> {
   try {
-    const prompt = `Can you repeat in that exact order the title for the meal all together and amount of calories, Protein, Carbohydrates, and Fats in ${description}? Do not give me any other text, just the title and these values. Eg. 1 Cup of Rice and 1 Glass of Milk and 7 Carrots, 300, 40, 12, 12. Do not provide the units of measurment and separate the names in the title with "and" and separate the other values from title using commas. DO NOT use commas in the title, only use commas as separators. Give a general estimate if an exact value is not possible.`;
+    const prompt = `Can you repeat in that exact order the title for the meal all together and amount of calories, Protein, Carbohydrates, and Fats in ${description}? Do not give me any other text, just the title and these values. Eg. 1 Cup of Rice and 1 Glass of Milk and 7 Carrots, 300, 40, 12, 12. Do not provide the units of measurment and separate the names in the title with "and" and separate the other values from title using commas. DO NOT use commas in the title or in the numerical values, only use commas as separators. Give a general estimate if an exact value is not possible.`;
     const { GoogleGenerativeAI } = require("@google/generative-ai");
 
     const genAI = new GoogleGenerativeAI(
